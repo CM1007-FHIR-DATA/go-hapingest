@@ -8,7 +8,7 @@ RUN GOOS=$TARGETOS GOARCH=$TARGETARCH make
 
 FROM scratch AS runner
 
-COPY --from=builder /app/bin/go-hapigest /app
+COPY --from=builder /app/bin/go-hapingest /app
 
 EXPOSE 8080
 
