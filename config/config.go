@@ -18,7 +18,7 @@ type Config struct {
 const (
 	defaultDataDir       = "./fhir-data"
 	defaultURLBase       = "http://host.docker.internal"
-	defaultFHIRServerURL = "http://127.0.0.1:8080/fhir"
+	defaultFHIRServerURL = "http://host.docker.internal:8080/fhir"
 	defaultPort          = "8001"
 	defaultPingServer    = true
 )
