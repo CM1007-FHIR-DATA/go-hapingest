@@ -11,6 +11,8 @@
 
 # go-hapingest
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/Phillezi/kthcloud-cli?style=social)](https://goreportcard.com/report/github.com/CM1007-FHIR-DATA/go-hapingest)
+
 ## Table of Contents
 
 - [Overview](#overview)
