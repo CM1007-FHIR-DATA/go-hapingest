@@ -59,4 +59,13 @@ func main() {
 		}
 		time.Sleep(1 * time.Second)
 	}
+	if cfg.SleepWhenDone {
+		sleepInfinityly()
+	}
+}
+
+func sleepInfinityly() {
+	for {
+		time.Sleep(100000 * time.Hour)
+	}
 }

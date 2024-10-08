@@ -13,6 +13,7 @@ type Config struct {
 	FHIRServerURL string
 	Port          string
 	PingServer    bool
+	SleepWhenDone bool
 }
 
 const (
@@ -21,6 +22,7 @@ const (
 	defaultFHIRServerURL = "http://host.docker.internal:8080/fhir"
 	defaultPort          = "8001"
 	defaultPingServer    = true
+	defaultSleepWhenDone = true
 )
 
 var (
@@ -36,6 +38,7 @@ func GetInstance() *Config {
 			FHIRServerURL: getEnv("FHIR_SERVER_URL", defaultFHIRServerURL),
 			Port:          getEnv("PORT", defaultPort),
 			PingServer:    getEnvBool("BLOCKING_PING_FHIR_SERVER", defaultPingServer),
+			SleepWhenDone: getEnvBool("SLEEP_WHEN_DONE", defaultSleepWhenDone),
 		}
 	})
 	return instance
@@ -57,9 +60,13 @@ func getEnvBool(key string, fallback bool) bool {
 
 func (c *Config) String() string {
 	pingServerStr := "true"
+	sleepWhenDoneStr := "true"
 	if !c.PingServer {
 		pingServerStr = "false"
 	}
-	return fmt.Sprintf("Config:\n\tDataDir: %s\n\tURLBase: %s\n\tFHIRServerURL: %s\n\tPort: %s\n\tBlockingPingFhirServer: %s\n\n",
-		c.DataDir, c.URLBase, c.FHIRServerURL, c.Port, pingServerStr)
+	if !c.SleepWhenDone {
+		sleepWhenDoneStr = "false"
+	}
+	return fmt.Sprintf("Config:\n\tDataDir: %s\n\tURLBase: %s\n\tFHIRServerURL: %s\n\tPort: %s\n\tBlockingPingFhirServer: %s\n\tSleepWhenDone: %s\n\n",
+		c.DataDir, c.URLBase, c.FHIRServerURL, c.Port, pingServerStr, sleepWhenDoneStr)
 }
